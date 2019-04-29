@@ -1,14 +1,41 @@
+kind: pipeline
+name: default
+
 workspace:
   base: /go
   path: src/github.com/avijit-dgp/repositories-to-be-tested-by-drone
 
-pipeline:
-  test:
-    image: golang:latest
+steps:
+  - name: test
+    image: golang
     commands:
       - go get
-      - go test -v -cover
-  build:
-    image: golang:latest
+      - go test
+
+  - name: build
+    image: golang
     commands:
-      - go build
+      - go get
+      - go build -o output
+      - chmod +x output
+      
+  - name: run
+    image: golang
+    commands:
+      - go get
+      - go build -o output
+      - chmod +x output
+      - ./output
+
+
+
+
+
+
+
+
+
+
+
+
+
