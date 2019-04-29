@@ -26,16 +26,7 @@ steps:
       - go build -o output
       - chmod +x output
       - ./output
-
-
-
-
-
-
-
-
-
-
-
-
-
+when:
+  event:
+  - push
+  - pull-request
